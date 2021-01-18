@@ -11,19 +11,20 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
-        $products = [];
+        // $faker = Faker::create();
+        // $products = [];
 
-        foreach (range(1, 20) as $index){   
-            $products[] = [
-                'name' => $faker-> sentence,
-                'price' => $faker->randomDigitNot(0) * 100,
-                'category_id' => rand(3, 5),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
-        }
+        // foreach (range(1, 20) as $index){   
+        //     $products[] = [
+        //         'name' => $faker-> sentence,
+        //         'price' => $faker->randomDigitNot(0) * 100,
+        //         'category_id' => rand(3, 5),
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ];
+        // }
 
-        DB::table('products') ->insert($products);
+        // DB::table('products') ->insert($products);
+
     }
 }

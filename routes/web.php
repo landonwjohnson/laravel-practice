@@ -1,5 +1,9 @@
 <?php
 
+use App\Category;
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ProductResource;
+use App\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,24 +22,16 @@ Route::get('/', function () {
     // return view('welcome');
 });
 
-Route::get('/products', function(){
-    $products = [
-        ['id' => 1, 'name' => 'product 1', 'price' => 100],
-        ['id' => 2, 'name' => 'product 2', 'price' => 200]
+Route::get('/products', 'ProductController@index');
+Route::post('/products', 'ProductController@store');
 
-    ];
-    return view('products.index', compact('products'));
-});
+Route::get('/products/{product_id}', 'ProductController@show');
+Route::put('/products/{product}', 'ProductController@update');
+Route::delete('/products/{product}', 'ProductController@destroy');
 
-Route::get('/products/create', function(){
-
-    return view('products.create');
-});
-
-Route::get('/products/{product_id}', function($product){
-    return view('products.show', compact('product'));
-});
 
 Route::get('/categories', function(){
-    return response() -> json(["Category1", "Category2"]);
+    $categories = Category::orderBy('name')->get();
+    return CategoryResource::collection($categories);
+    // return response() -> json(["Category1", "Category2"]);
 });

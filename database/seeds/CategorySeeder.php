@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker
+use Faker\Factory as Faker;
+
 class CategorySeeder extends Seeder
 {
     /**
@@ -11,17 +12,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        $categories = [];
-        $faker = Faker::create();
-        foreach(range(1, 5) as $index){
-            $categories[] = [
-                'name' => $faker->text(20),
-                'created_at' => now(),
-                'updated_at' => now(),
+        factory(Category::class, 5)->create();
 
-            ];
-        }
-
-        DB::table('categories')->insert($categories);
     }
 }
